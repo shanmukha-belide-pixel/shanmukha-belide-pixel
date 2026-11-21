@@ -1,0 +1,70 @@
+name: Generate Animated GitHub Heatmap
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Runs daily at midnight UTC
+  workflow_dispatch: # Allows manual trigger from GitHub UI
+  push:
+    branches:
+      - main
+    paths:
+      - 'generate.mjs'
+      - '.github/workflows/generate-heatmap.yml'
+
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          token: ${{ secrets.GH_TOKEN || secrets.GITHUB_TOKEN }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Run Test Suite
+        run: npm test
+
+      - name: Generate Live SVG
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_USERNAME: shanmukha-belide-pixel
+        run: node generate.mjs
+
+      - name: Commit and push changes
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          if [ -z "$GH_TOKEN" ]; then
+            echo "::warning::GH_TOKEN secret is not set or empty in Repository Secrets."
+          else
+            echo "GH_TOKEN secret is detected (length: ${#GH_TOKEN})."
+          fi
+          echo "Current git status:"
+          git status --short
+          if [ -n "$(git status --porcelain)" ]; then
+            git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git config --local user.name "github-actions[bot]"
+            git add github-jet.svg dist/github-jet.svg
+            git commit -m "chore: update live jet heatmap SVG [skip ci]"
+            git push "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git" HEAD:main > push.log 2>&1 || \
+            git push "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" HEAD:main >> push.log 2>&1 || \
+            (echo "=== GIT PUSH ERROR LOG ===" && cat push.log && exit 1)
+          else
+            echo "No changes detected. Working tree clean."
+          fi
+
+
+
+
+
+
+
