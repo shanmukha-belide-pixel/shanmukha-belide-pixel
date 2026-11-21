@@ -12,7 +12,7 @@
 import fs from "node:fs";
 import path from "node:path";
 
-export const USERNAME = process.env.GH_USERNAME || "MidnightMorgan2748";
+export const USERNAME = process.env.GH_USERNAME || "shanmukha-belide-pixel";
 export const TOKEN = process.env.GH_TOKEN || process.env.GITHUB_TOKEN || "";
 export const OUTPUT = process.env.OUTPUT_PATH || "dist/github-jet.svg";
 
@@ -665,7 +665,7 @@ export function buildArcadeStarfighter(targets = []) {
 }
 
 export function buildSvg(weeks, options = {}) {
-  const { mock = false, username = USERNAME, cols = 52, rank = "LVL 24 · ML ENGINEER" } = options;
+  const { mock = false, username = USERNAME, cols = 52, rank = "LVL 24 · SOFTWARE DEVELOPER" } = options;
   if (mock || !weeks || weeks.length === 0) {
     weeks = generateMockWeeks(cols);
   }
@@ -774,7 +774,7 @@ ${buildExplosiveImpacts(targets)}
 
 <!-- Bottom HUD Legend & Defense Grid Metadata -->
 ${buildLegend()}
-<text x="${WIDTH - 140}" y="${HEIGHT - 12}" class="hud-meta" text-anchor="end">[ARCADE DEFENSE GRID // SECTOR: MIDNIGHT-MORGAN]</text>
+<text x="${WIDTH - 140}" y="${HEIGHT - 12}" class="hud-meta" text-anchor="end">[ARCADE DEFENSE GRID // SECTOR: SHANMUKHA-BELIDE]</text>
 
 <!-- Dual-Hull Starfighter Jet & Forward Boresight Sighting Laser -->
 ${buildArcadeStarfighter(targets)}
@@ -887,7 +887,7 @@ export async function main() {
     }
   }
 
-  const svg = buildSvg(weeks, { mock: isMock, username: USERNAME, rank: "LVL 24 · ML ENGINEER" });
+  const svg = buildSvg(weeks, { mock: isMock, username: USERNAME, rank: "LVL 24 · SOFTWARE DEVELOPER" });
   const outPath = path.resolve(OUTPUT);
   fs.mkdirSync(path.dirname(outPath), { recursive: true });
   fs.writeFileSync(outPath, svg, "utf8");
