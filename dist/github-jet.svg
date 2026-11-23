@@ -56,7 +56,7 @@
   <text x="320" y="32"><tspan class="hud-label-cyan">RANK: </tspan><tspan class="hud-val-cyan">LVL 24 · SOFTWARE DEVELOPER</tspan></text>
 
   <!-- COMBO MULTIPLIER -->
-  <text x="680" y="32"><tspan class="hud-label-rose">COMBO: </tspan><tspan class="hud-val-rose">x1 STREAK</tspan></text>
+  <text x="680" y="32"><tspan class="hud-label-rose">COMBO: </tspan><tspan class="hud-val-rose">x0 STREAK</tspan></text>
 
 
   <!-- SHIELDS -->
@@ -495,7 +495,7 @@
     <title>5 power units on 2026-11-21</title>
   </rect>
   <rect x="1058" y="88" width="14" height="14" rx="2.5" fill="#0F172A" stroke="#1E293B" stroke-width="0.75"><title>0 power units on 2026-11-22</title></rect>
-  <rect x="1058" y="106" width="14" height="14" rx="2.5" fill="#0F172A" stroke="#1E293B" stroke-width="0.75"><title>0 power units on untracked</title></rect>
+  <rect x="1058" y="106" width="14" height="14" rx="2.5" fill="#0F172A" stroke="#1E293B" stroke-width="0.75"><title>0 power units on 2026-11-23</title></rect>
   <rect x="1058" y="124" width="14" height="14" rx="2.5" fill="#0F172A" stroke="#1E293B" stroke-width="0.75"><title>0 power units on untracked</title></rect>
   <rect x="1058" y="142" width="14" height="14" rx="2.5" fill="#0F172A" stroke="#1E293B" stroke-width="0.75"><title>0 power units on untracked</title></rect>
   <rect x="1058" y="160" width="14" height="14" rx="2.5" fill="#0F172A" stroke="#1E293B" stroke-width="0.75"><title>0 power units on untracked</title></rect>
